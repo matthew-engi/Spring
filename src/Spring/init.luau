@@ -1,4 +1,15 @@
 --[[
+    🌀 Spring – Smooth, Physics-Based Animation
+	─────────────────────────────────────────────
+	Author: Matthew (Creaco) · License: License.luau
+	Version: 1.0.0
+	Last Updated: 2025-07-16
+
+    Springs are a powerful tool for creating smooth and responsive animations.
+    In many cases—such as simulating initial velocity or dynamic movement, TweenService falls short.
+    For example, when animating a pet following the player, spring-based motion feels significantly
+        more natural and lifelike compared to traditional tweens.
+
     ✋ Restrictions:
         1- Type T must support the following operations:
             i-   Addition (+)       | > add(T, T)      -> T
@@ -7,6 +18,12 @@
             iv-  Division (÷)       | > div(T, number) -> T
         (Note: This is achievable using metamethods __add, __sub, __mul, and __div
             if needed for special types)
+
+    🔑 Recommendations:
+        1- The developer is responsible for handling render loops:
+            i-   You can keep a spring connected at all times, but computations may be heavy.
+            ii-  I recommend making a SpringHandler module to keep track of connections.
+            iii- Disconnect unused springs to avoid unnecessary performance cost.
 
     🔗 References:
         1- https://en.wikipedia.org/wiki/Damping
@@ -29,7 +46,7 @@ local cos  = math.cos
 local sqrt = math.sqrt
 
 -- Types ------------
-type ArithGeneric<T> = add<T,T> -- Temporary until ROBLOX adds Generic Constraints
+type ArithGeneric<T> = T -- Temporary until ROBLOX adds Generic Constraints
 
 type SpringData<T> = {
     damping: 	number,
@@ -74,7 +91,7 @@ function Spring.Step<T>(self: Spring<T>, dt: number): ArithGeneric<T>
     local dT = p - g
     local o = 2 * pi * f
 
-    if self.damping < 1 then
+    if d < 1 then
         -- Underdamped spring (ζ < 1)
         -- Reference: e^(−ζωt) × (c₁ × cos(ω_d × t) + c₂ × sin(ω_d × t))
         local od = o * sqrt(1-d^2)
@@ -91,7 +108,7 @@ function Spring.Step<T>(self: Spring<T>, dt: number): ArithGeneric<T>
             (-c1 * o * d + c2 * od) * cosTerm +
             (-c2 * o * d - c1 * od) * sinTerm
         )
-    elseif self.damping == 1 then
+    elseif d == 1 then
         -- Critically damped (ζ = 1)
         -- Reference: e^(−ω t) × (c₁ + c₂ × t)
         local c1 = dT
