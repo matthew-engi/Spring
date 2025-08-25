@@ -1,4 +1,4 @@
-# 🌀 Spring – Smooth, Physics-Based Animation
+# Spring
 
 ---
 
@@ -8,12 +8,10 @@
 **Last Updated:** `2025-07-16`
 
 Springs are a powerful tool for creating smooth and responsive animations.  
-In many cases—such as simulating initial velocity or dynamic movement—`TweenService` falls short.  
-For example, when animating a pet following the player, spring-based motion feels significantly more natural and lifelike compared to traditional tweens.
 
 ---
 
-## ✋ Restrictions
+## Restrictions
 
 Type `T` must support the following operations:
 
@@ -33,7 +31,7 @@ Type `T` must support the following operations:
 
 ---
 
-## 🔑 Recommendations
+## Recommendations
 
 1. **Render loop handling is your responsibility:**
    - You may keep a spring connected at all times, but this may lead to heavier computation.
@@ -42,7 +40,7 @@ Type `T` must support the following operations:
 
 ---
 
-## 🔗 References
+## References
 
 1. [Damping – Wikipedia](https://en.wikipedia.org/wiki/Damping)  
 2. [Programming in Lua Gems](https://www.lua.org/gems/sample.pdf)  
