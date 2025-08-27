@@ -1,16 +1,13 @@
 --[[
-    🌀 Spring – Smooth, Physics-Based Animation
+    Spring
 	─────────────────────────────────────────────
 	Author: Matthew (Creaco) · License: License.luau
 	Version: 1.0.0
 	Last Updated: 2025-07-16
 
     Springs are a powerful tool for creating smooth and responsive animations.
-    In many cases—such as simulating initial velocity or dynamic movement, TweenService falls short.
-    For example, when animating a pet following the player, spring-based motion feels significantly
-        more natural and lifelike compared to traditional tweens.
-
-    ✋ Restrictions:
+    
+    Restrictions:
         1- Type T must support the following operations:
             i-   Addition (+)       | > add(T, T)      -> T
             ii-  Substraction (-)   | > sub(T, T)      -> T
@@ -19,13 +16,13 @@
         (Note: This is achievable using metamethods __add, __sub, __mul, and __div
             if needed for special types)
 
-    🔑 Recommendations:
+    Recommendations:
         1- The developer is responsible for handling render loops:
             i-   You can keep a spring connected at all times, but computations may be heavy.
             ii-  I recommend making a SpringHandler module to keep track of connections.
             iii- Disconnect unused springs to avoid unnecessary performance cost.
 
-    🔗 References:
+    References:
         1- https://en.wikipedia.org/wiki/Damping
         2- https://www.lua.org/gems/sample.pdf
         3- https://create.roblox.com/docs/luau/native-code-gen
