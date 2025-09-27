@@ -2,7 +2,7 @@
 
 ---
 
-**Author:** Matthew (Creaco)  
+**Author:** Matthew
 **License:** `License.luau`  
 **Version:** `1.0.0`  
 **Last Updated:** `2025-07-16`
